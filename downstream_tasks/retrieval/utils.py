@@ -11,12 +11,8 @@ import pandas as pd
 
 from utilities import constants
 from datasets.mimic_cxr import NewMimicCXRTestDataset, NewMimicCXRPretrainDataset
-from datasets.open_i import OpenIPretrainDataset
-from modeling.blip2_models import (
-    blip2_qformer,
-    blip2_qformer_3d,
-    blip2_qformer_vqvae,
-)
+from modeling.medunifier import medunifier
+
 
 def collate_fn(batch):
     images = [item[0] for item in batch]
@@ -24,31 +20,24 @@ def collate_fn(batch):
     images = torch.stack(images)
     return {"image": images, "text_input": texts}
 
+
 def create_model(model_type:str, ckpt_path:str):
-    if model_type == "vqvae_qformer":
-        model = blip2_qformer_vqvae.Blip2QformerVQvae(
-            vit_model="eva_clip_g",
-            freeze_vit=True,
+    if model_type == "full_model":
+        model = medunifier.MedUnifier(
             max_txt_len=95,
-            mode="2D",
             codebook_size=512,
-            vit_precision="fp16",
         )
         checkpoint = torch.load(ckpt_path)
-        # print(model.state_dict()["vqvae.downsample_zq.weight"].max())
         model.load_state_dict(checkpoint)
-        # print(model.state_dict()["vqvae.downsample_zq.weight"].max())
         
-    elif model_type == "plain_qformer":
-        model = blip2_qformer.Blip2Qformer(
-            vit_model="eva_clip_g",
-            freeze_vit=True,
+    elif model_type == "incomplete_model":
+        model = medunifier.MedUnifier(
             max_txt_len=95,
+            codebook_size=512,
+            requires_TIG=False,
         )
         checkpoint = torch.load(ckpt_path)
-        # print(model.state_dict()["vqvae.downsample_zq.weight"].max())
         model.load_state_dict(checkpoint)
-        # print(model.state_dict()["vqvae.downsample_zq.weight"].max())
 
     return model.float()
 
@@ -69,15 +58,8 @@ def build_retrieval_dataset(dataset_name, mode="test", single_sentence=False):
             single_sentence=single_sentence,
         )
 
-    elif dataset_name == "open_i":
-        if mode == "train":
-            dataset = OpenIPretrainDataset(root_dir=constants.Constants.open_i_dir, mode="train", single_sentence=single_sentence)
-        elif mode == "val":
-            dataset = OpenIPretrainDataset(root_dir=constants.Constants.open_i_dir, mode="val", single_sentence=single_sentence)
-        elif mode == "test":
-            dataset = OpenIPretrainDataset(root_dir=constants.Constants.open_i_dir, mode="test", single_sentence=single_sentence)
-
     return dataset
+
 
 def build_retrieval_dataloader(dataset, batch_size=16):
     dataloader = DataLoader(

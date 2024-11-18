@@ -47,6 +47,7 @@ class TopBridge2D(nn.Module):
 
         return z_e_top
 
+
 class BottomBridge2D(nn.Module):
     def __init__(self, vis_dim, txt_dim, feat_dim):
         super(BottomBridge2D, self).__init__()
@@ -82,6 +83,7 @@ class BottomBridge2D(nn.Module):
         z_e_bottom = self.resdiual_stack(fused_embeddings)
 
         return z_e_bottom
+
 
 class TopBridge3D(nn.Module):
 

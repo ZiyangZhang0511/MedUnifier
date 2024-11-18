@@ -22,7 +22,7 @@ from .utils import (
 from .classifier import Classifier
 
 
-CHECKPOINTS_DIR = "/home/olg7848/p32335/my_research/MedUnifier/checkpoints/supervised_cls/"
+CHECKPOINTS_DIR = "./checkpoints/supervised_cls/"
 
 
 def get_args():
@@ -119,8 +119,6 @@ def main():
     print(model.evaluate(test_dataloader, args.dataset_name, device=device))
 
             
-        
-
 
 if __name__ == "__main__":
 

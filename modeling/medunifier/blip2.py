@@ -1,9 +1,3 @@
-"""
- Copyright (c) 2023, salesforce.com, inc.
- All rights reserved.
- SPDX-License-Identifier: BSD-3-Clause
- For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
-"""
 import contextlib
 import logging
 import os
@@ -43,8 +37,6 @@ def randomize_model(model):
 class Blip2Base(BaseModel):
     @classmethod
     def init_tokenizer(cls, truncation_side="right"):
-        # tokenizer = BertTokenizer.from_pretrained("bert-base-uncased", truncation_side=truncation_side)
-        # tokenizer = BertTokenizer.from_pretrained("emilyalsentzer/Bio_ClinicalBERT", truncation_side=truncation_side)
         tokenizer = BertTokenizer.from_pretrained("microsoft/BiomedVLP-CXR-BERT-general", truncation_side=truncation_side)
         tokenizer.add_special_tokens({"bos_token": "[DEC]"})
         return tokenizer
@@ -61,8 +53,6 @@ class Blip2Base(BaseModel):
 
     @classmethod
     def init_Qformer(cls, num_query_token, vision_width, cross_attention_freq=2):
-        # encoder_config = BertConfig.from_pretrained("bert-base-uncased")
-        # encoder_config = BertConfig.from_pretrained("emilyalsentzer/Bio_ClinicalBERT")
         encoder_config = BertConfig.from_pretrained("microsoft/BiomedVLP-CXR-BERT-general")
         # encoder_config = BertConfig()
         encoder_config.encoder_width = vision_width
@@ -74,8 +64,6 @@ class Blip2Base(BaseModel):
             "microsoft/BiomedVLP-CXR-BERT-general",
             config=encoder_config,
         )
-        # print(Qformer)
-        # Qformer = BertLMHeadModel(encoder_config)
         query_tokens = nn.Parameter(
             torch.zeros(1, num_query_token, encoder_config.hidden_size)
         )

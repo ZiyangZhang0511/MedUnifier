@@ -19,7 +19,7 @@ from pytorch_lightning import seed_everything
 from modeling.medunifier import medunifier
 from utilities.utils import build_dataset, build_dataloader, remove_directory
 
-PRETRAIN_CHECKPOINTS_DIR = "/home/olg7848/p32335/my_research/MedUnifier/checkpoints/full_model/"
+PRETRAIN_CHECKPOINTS_DIR = "./checkpoints/full_model/"
 
 
 def get_args():

@@ -21,9 +21,7 @@ from datasets.mimic_cxr import MimicZeroShotDataset
 from datasets.rsna import RSNAZeroShotDataset, RSNAFinetuneDataset
 from datasets.covidx import COVIDXFineTuneDataset
 from datasets.siim import SIIMFinetuneDataset
-from modeling.medunifier import (
-    medunifier
-)
+from modeling.medunifier import medunifier
 
 
 def create_model(model_type:str, ckpt_path:str):
@@ -36,7 +34,7 @@ def create_model(model_type:str, ckpt_path:str):
         model.load_state_dict(checkpoint)
         
     elif model_type == "incomplete_model":
-        model = blip2_qformer.Blip2Qformer(
+        model = medunifier.MedUnifier(
             max_txt_len=95,
             requires_TIG=True,
         )

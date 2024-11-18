@@ -6,7 +6,7 @@ from tqdm.auto import tqdm
 
 import torch
 from torch.utils.data import Dataset, DataLoader
-import torchvision.transforms.v2 as v2
+from torchvision.transforms import v2
 from torchvision.io import read_image, ImageReadMode
 from torchvision.utils import save_image
 

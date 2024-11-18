@@ -2,18 +2,18 @@
 class Constants:
 
     ### pre-training ###
-    new_mimic_cxr_5x200_dir = "/home/olg7848/p32335/MIMIC-CXR/new_dir/mimic_cxr_5x200/"
-    new_mimic_cxr_full_dir = "/home/olg7848/p32335/MIMIC-CXR/new_dir/mimic_cxr_full/"
+    new_mimic_cxr_5x200_dir = ".data/pretrain_data/mimic_cxr_5x200/"
+    new_mimic_cxr_full_dir = ".data/pretrain_data/mimic_cxr_full/"
 
     ### zero-shot classification ###
-    chexpert_5x200_dir = "/home/olg7848/p32335/my_research/MedUnifier/data/zero_shot_cls_data/chexpert_5x200/"
-    rsna_1000_dir = "/home/olg7848/p32335/my_research/MedUnifier/data/zero_shot_cls_data/rsna_1000/"
+    chexpert_5x200_dir = "./data/zero_shot_cls_data/chexpert_5x200/"
+    rsna_1000_dir = "./data/zero_shot_cls_data/rsna_1000/"
 
     ### fine-tuning classification ###
-    rsna_full_dir = "/home/olg7848/p32335/my_research/MedUnifier/data/finetune_cls_data/rsna/"
-    chexpert_full_dir = "/home/olg7848/p32335/my_research/MedUnifier/data/finetune_cls_data/chexpert_full/"
-    covidx_dir = "/home/olg7848/p32335/my_research/MedUnifier/data/finetune_cls_data/covidx/"
-    siim_dir = "/home/olg7848/p32335/my_research/MedUnifier/data/finetune_cls_data/siim/"
+    rsna_full_dir = "./data/finetune_cls_data/rsna/"
+    chexpert_full_dir = "./data/finetune_cls_data/chexpert_full/"
+    covidx_dir = "./data/finetune_cls_data/covidx/"
+    siim_dir = "./data/finetune_cls_data/siim/"
 
 CHEXPERT_CLASS_PROMPTS = {
     "Atelectasis": {

@@ -17,7 +17,7 @@ from utilities.utils import remove_file
 
 CodeRow = namedtuple('CodeRow', ['top', 'bottom', 'filename'])
 
-CHECKPOINTS_DIR = "/home/olg7848/p32335/my_research/MedUnifier/checkpoints/pixelsnail/pixelsnail_327/"
+CHECKPOINTS_DIR = "./checkpoints/pixelsnail/pixelsnail_327/"
 
 
 def get_args():
