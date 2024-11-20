@@ -2,8 +2,8 @@
 class Constants:
 
     ### pre-training ###
-    new_mimic_cxr_5x200_dir = ".data/pretrain_data/mimic_cxr_5x200/"
-    new_mimic_cxr_full_dir = ".data/pretrain_data/mimic_cxr_full/"
+    new_mimic_cxr_5x200_dir = "./data/pretrain_data/mimic_cxr_5x200/"
+    new_mimic_cxr_full_dir = "./data/pretrain_data/mimic_cxr_full/"
 
     ### zero-shot classification ###
     chexpert_5x200_dir = "./data/zero_shot_cls_data/chexpert_5x200/"
